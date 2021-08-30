@@ -11,11 +11,11 @@ import { Groups } from './interfaces/groups.interface';
 export class GroupsController {
   constructor(private readonly groupsService: GroupsService) {}
 
-  @Post()
-  @Roles('admin')
-  async create(@Body() createCatDto: CreateCatDto) {
-    this.groupsService.create(createCatDto);
-  }
+  // @Post()
+  // @Roles('admin')
+  // async create(@Body() createCatDto: CreateCatDto) {
+  //   this.groupsService.create(createCatDto);
+  // }
 
   @Get()
   async findAll(): Promise<Groups[]> {
@@ -23,10 +23,10 @@ export class GroupsController {
     return ret;
   }
 
-  @Get(':age')
+  @Get(':groupId')
   findOne(
-    @Param('age', new ParseIntPipe())
-    age: number,
+    @Param('groupId', new ParseIntPipe())
+    name: string,
   ) {
     return this.groupsService.findOne()
   }
