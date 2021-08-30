@@ -7,14 +7,9 @@ import {Web3Util} from '../web3/web3';
 export class LastBlockservice {
 
 
-  async findAll(): Promise<Block[]> {
-    
-    let block: Block[] = [];
-    let b = await (new Web3Util()).getBlockNumber()
-    block.push(b)
-
-    return block;
-
+  async findAll(): Promise<Block> {
+    let block = await (new Web3Util()).getBlockNumber()
+    return <Block>block;
   }
 
 

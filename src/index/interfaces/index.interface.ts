@@ -1,3 +1,5 @@
+import { ApiProperty } from '@nestjs/swagger';
+
 export interface Index{
   name:              string;
   ethPriceInWei:     number;

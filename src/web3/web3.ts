@@ -1,7 +1,8 @@
 
 const Web3 = require('web3');
-
-
+import { Group } from '../group/interfaces/group.interface';
+import { Index } from '../index/interfaces/index.interface';
+import { Block } from '../lastblock/interfaces/block.interface';
 
 export class Web3Util{
 
@@ -36,14 +37,14 @@ export class Web3Util{
     
     }
 
-    async getBlockNumber(): Promise<any> {
+    async getBlockNumber(): Promise<Block> {
         let blockNum = this.eth.getBlockNumber().then(
          (b) => { return b;}
         );
         return blockNum;
     }
    
-    async  getGroup(groupId) { 
+    async  getGroup(groupId):Promise<Group>  { 
         return  this.contract.methods.getGroup(groupId).call()
     }
 

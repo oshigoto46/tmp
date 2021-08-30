@@ -19,18 +19,24 @@ export class IndexService {
 
   }
 
-  async findOne(indexId:Number): Promise<Index[]>{
+  async findOne(indexId:Number): Promise<Index>{
+    try{
+       let c = await (new Web3Util()).getIndex(indexId)
+       console.log("c"+c)
+       
+       return <Index>{name:            c.name,
+                    ethPriceInWei:   c.ethPriceInWei,
+                    usdPriceInCents: c.usdPriceInCents,
+                    usdCapitalization: c.usdCapitalization,
+                    percentageChange : c.percentageChange
+                    }
+     }catch(e){
+      // 
+       // console.log("===============service======")
+        return <Index>{name:"not_found",ethPriceInWei:0,usdPriceInCents:0,usdCapitalization:0,percentageChange:0}
+    }
 
-    let index: Index[] = [];
-    let c = await (new Web3Util()).getIndex(indexId)
-    console.log(c)
-    index.push( {name:            c.name,
-                 ethPriceInWei:   c.ethPriceInWei,
-                 usdPriceInCents: c.usdPriceInCents,
-                 usdCapitalization: c.usdCapitalization,
-                 percentageChange : c.percentageChange
-                 })
-    return index
+  
   }
-
+   
 }

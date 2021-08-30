@@ -22,13 +22,13 @@ describe('Groups', () => {
     await app.init();
   });
 
-  it(`/GET groups 200 `, () => {
+  it(`#1 /GET groups 200 `, () => {
     return request(app.getHttpServer()).get('/group-ids').expect(200).expect({
       data: catsService.findAll(),
     });
   });
 
-  it(`/GET groups inaccessablie path 404`, () => {
+  it(`#2 /GET groups inaccessablie path 404`, () => {
     return request(app.getHttpServer()).get('/group-idsssss').expect(404).expect({
       statusCode: 404,
       message: 'Cannot GET /group-idsssss',
