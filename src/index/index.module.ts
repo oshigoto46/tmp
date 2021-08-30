@@ -4,6 +4,6 @@ import { IndexService } from './index.service';
 
 @Module({
   controllers: [IndexController],
-  providers: [IndexService],
+  providers:   [IndexService],
 })
 export class IndexModule {}

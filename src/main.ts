@@ -8,7 +8,7 @@ async function bootstrap() {
   // app.useGlobalPipes(new ValidationPipe());
   const config = new DocumentBuilder()
     .setTitle('Group/Indexes')
-    .setDescription('The cats Group/Indexes description')
+    .setDescription('The Group/Indexes description')
     .setVersion('1.0')
     .addTag('group-indexes')
     .build();
