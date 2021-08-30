@@ -9,7 +9,6 @@ export class GroupService {
   async findAll(): Promise<Number[]> {
 
     let groupIds: Number[] = [];
-    //let b = await (new Web3Util()).getBlockNumber()
     let d = await (new Web3Util()).getGroupIds()
     for(let _d of d){
       groupIds.push(_d)
@@ -22,7 +21,6 @@ export class GroupService {
     try{
       let groups: Group
       let c = await (new Web3Util()).getGroup(groupId)
-      console.log("ccccccccccccc" + JSON.stringify(c))
       return <Group>{name: c.name, indexes: c.indexes}
     }catch(e){
       let tmp :Number[] = [];

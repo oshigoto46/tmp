@@ -10,7 +10,7 @@ export class Web3Util{
   private contract;
     
   constructor(){
-        const apiKey = '172567e7cd7c4a29908b56d386b18d38';
+        const apiKey = process.env.APIKEY;
         const provider = new Web3.providers.HttpProvider(`https://ropsten.infura.io/v3/${apiKey}`);
         this.eth = new Web3(provider).eth;
 
@@ -31,7 +31,7 @@ export class Web3Util{
             {"internalType":"int256","name":"percentageChange","type":"int256"}],
             "payable":false,"stateMutability":"view","type":"function"}];
 
-        const address = '0x4f7f1380239450AAD5af611DB3c3c1bb51049c29';
+        const address = process.env.ADDRESS;
 
         this.contract = new this.eth.Contract(jsonInterface, address);
     

@@ -3,6 +3,7 @@ import { Test } from '@nestjs/testing';
 import * as request from 'supertest';
 import { GroupModule } from '../group/group.module';
 import { GroupService } from '../group/group.service';
+import { Group } from '../group/interfaces/group.interface';
 import { CoreModule } from '../core/core.module';
 import { _ } from 'lodash'
 
@@ -10,10 +11,18 @@ describe('Groups', () => {
 
   const groupService = { 
   findAll: () => ['12,13'] , 
-  findOne: () => [{"0":"DeFi Indexes",
+  findOne: (groupId) => {
+                    if(groupId === 12) {
+                     return [{"0":"DeFi Indexes",
                     "1":["0","1","2","3","4","5","6"],
                     "name":"DeFi Indexes",
                     "indexes":["0","1","2","3","4","5","6"]}]
+                  }else{
+                    return {
+                    "name":"not_found",
+                    "indexes":[]}
+                  }
+                }
  };
 
   let app: INestApplication;
@@ -55,7 +64,14 @@ describe('Groups', () => {
     })
    
   });
-  
+
+  it(`#4 /GET gropuid Not found (groupId not exist)`, () => {
+   
+    return request(app.getHttpServer()).get('/group/12222222222')
+    .then(r => { expect(r.statusCode).toBe(404)})
+   
+  });
+
 
   afterAll(async () => {
     await app.close();
