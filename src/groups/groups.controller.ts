@@ -3,7 +3,6 @@ import { Roles } from '../common/decorators/roles.decorator';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
 import { GroupsService } from './groups.service';
-import { CreateCatDto } from './dto/create-cat.dto';
 import { Groups } from './interfaces/groups.interface';
 
 @UseGuards(RolesGuard)
@@ -11,23 +10,17 @@ import { Groups } from './interfaces/groups.interface';
 export class GroupsController {
   constructor(private readonly groupsService: GroupsService) {}
 
-  // @Post()
-  // @Roles('admin')
-  // async create(@Body() createCatDto: CreateCatDto) {
-  //   this.groupsService.create(createCatDto);
-  // }
-
   @Get()
-  async findAll(): Promise<Groups[]> {
+  async findAll(): Promise<Number[]> {
     let ret = await this.groupsService.findAll();
     return ret;
   }
 
   @Get(':groupId')
-  findOne(
+  async findOne(
     @Param('groupId', new ParseIntPipe())
-    name: string,
+    groupId: Number,
   ) {
-    return this.groupsService.findOne()
+    return this.groupsService.findOne(groupId)
   }
 }

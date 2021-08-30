@@ -1,6 +1,8 @@
 export interface Groups {
+
   name: string;
-  //index: Index;
+  indexes: number[];
+  
 }
 
 interface Index{

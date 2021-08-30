@@ -46,4 +46,8 @@ export class Web3Util{
     async  getGroup(groupId) { 
         return  this.contract.methods.getGroup(groupId).call()
     }
+
+    async getGroupIds() { 
+        return this.contract.methods.getGroupIds().call();
+     }
 }

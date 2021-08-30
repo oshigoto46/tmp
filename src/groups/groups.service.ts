@@ -5,25 +5,26 @@ import {Web3Util} from '../web3/web3';
 
 @Injectable()
 export class GroupsService {
-  private readonly groups: Groups[] = [];
 
-  create(group: Groups) {
-    this.groups.push(group);
+
+  async findAll(): Promise<Number[]> {
+    
+    let groupIds: Number[] = [];
+    //let b = await (new Web3Util()).getBlockNumber()
+    let d = await (new Web3Util()).getGroupIds()
+    for(let _d of d){
+      groupIds.push(_d)
+    }
+    return groupIds;
+
   }
 
-  async findAll(): Promise<Groups[]> {
-    let b = await (new Web3Util()).getBlockNumber()
-    let c = await (new Web3Util()).getGroup(12)
-    console.log(c.name)
+  async findOne(groupId:Number): Promise<Groups[]>{
 
-    this.groups.push({
-      name: String(c.name)
-
-      })
-    return this.groups;
+    let groups: Groups[] = [];
+    let c = await (new Web3Util()).getGroup(groupId)
+    groups.push({name: c.name, indexes: c.indexes})
+    return groups
   }
 
-  findOne(){
-    return this.groups[0]
-  }
 }
