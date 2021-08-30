@@ -7,10 +7,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   // app.useGlobalPipes(new ValidationPipe());
   const config = new DocumentBuilder()
-    .setTitle('Group/Indexes')
-    .setDescription('The Group/Indexes description')
+    .setTitle('Group/Index for smart contract')
     .setVersion('1.0')
-    .addTag('group-indexes')
+    .addTag('group/index')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

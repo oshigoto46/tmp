@@ -4,9 +4,17 @@ import * as request from 'supertest';
 import { GroupModule } from '../group/group.module';
 import { GroupService } from '../group/group.service';
 import { CoreModule } from '../core/core.module';
+import { _ } from 'lodash'
 
 describe('Groups', () => {
-  const catsService = { findAll: () => ['12,13'] };
+
+  const groupService = { 
+  findAll: () => ['12,13'] , 
+  findOne: () => [{"0":"DeFi Indexes",
+                    "1":["0","1","2","3","4","5","6"],
+                    "name":"DeFi Indexes",
+                    "indexes":["0","1","2","3","4","5","6"]}]
+ };
 
   let app: INestApplication;
 
@@ -15,7 +23,7 @@ describe('Groups', () => {
       imports: [GroupModule, CoreModule],
     })
       .overrideProvider(GroupService)
-      .useValue(catsService)
+      .useValue(groupService)
       .compile();
 
     app = moduleRef.createNestApplication();
@@ -24,7 +32,7 @@ describe('Groups', () => {
 
   it(`#1 /GET groups 200 `, () => {
     return request(app.getHttpServer()).get('/group-ids').expect(200).expect({
-      data: catsService.findAll(),
+      data: groupService.findAll(),
     });
   });
 
@@ -36,6 +44,18 @@ describe('Groups', () => {
     });
   });
 
+  it(`#3 /GET gropuid found path 200`, () => {
+    return request(app.getHttpServer()).get('/group/12')
+    .then(r => { expect(r.statusCode).toBe(200)
+                 let actual = JSON.parse(r.text.split("\\")[0])
+                 // some trick for workaround
+                 expect(_.isEqual(actual.data[0].indexes,['0','1','2','3','4','5','6'])).toBe(true)
+                 expect(actual.data[0].name).toBe("DeFi Indexes")
+                //    Received: "{\"data\":[{\"0\":\"DeFi Indexes\",\"1\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\"],\"name\":\"DeFi Indexes\",\"indexes\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\"]}]}"
+    })
+   
+  });
+  
 
   afterAll(async () => {
     await app.close();

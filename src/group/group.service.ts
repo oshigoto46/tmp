@@ -18,12 +18,16 @@ export class GroupService {
 
   }
 
-  async findOne(groupId:Number): Promise<Group[]>{
-
-    let groups: Group[] = [];
-    let c = await (new Web3Util()).getGroup(groupId)
-    groups.push({name: c.name, indexes: c.indexes})
-    return groups
+  async findOne(groupId:Number): Promise<Group>{
+    try{
+      let groups: Group
+      let c = await (new Web3Util()).getGroup(groupId)
+      console.log("ccccccccccccc" + JSON.stringify(c))
+      return <Group>{name: c.name, indexes: c.indexes}
+    }catch(e){
+      let tmp :Number[] = [];
+      return <Group>{name:"not_found",indexes: tmp}
+    }
   }
 
 }
