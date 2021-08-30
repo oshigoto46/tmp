@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
-import { CatsController } from './cats.controller';
-import { CatsService } from './cats.service';
+import { CatsController } from './groups.controller';
+import { CatsService } from './groups.service';
 import { Cat } from './interfaces/cat.interface';
 
 describe('CatsController', () => {

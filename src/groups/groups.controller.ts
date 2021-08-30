@@ -2,24 +2,24 @@ import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { Roles } from '../common/decorators/roles.decorator';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
-import { CatsService } from './cats.service';
+import { GroupsService } from './groups.service';
 import { CreateCatDto } from './dto/create-cat.dto';
-import { Cat } from './interfaces/cat.interface';
+import { Groups } from './interfaces/groups.interface';
 
 @UseGuards(RolesGuard)
-@Controller('cats')
-export class CatsController {
-  constructor(private readonly catsService: CatsService) {}
+@Controller('groups')
+export class GroupsController {
+  constructor(private readonly groupsService: GroupsService) {}
 
   @Post()
   @Roles('admin')
   async create(@Body() createCatDto: CreateCatDto) {
-    this.catsService.create(createCatDto);
+    this.groupsService.create(createCatDto);
   }
 
   @Get()
-  async findAll(): Promise<Cat[]> {
-    let ret = await this.catsService.findAll();
+  async findAll(): Promise<Groups[]> {
+    let ret = await this.groupsService.findAll();
     return ret;
   }
 
@@ -28,6 +28,6 @@ export class CatsController {
     @Param('age', new ParseIntPipe())
     age: number,
   ) {
-    return this.catsService.findOne()
+    return this.groupsService.findOne()
   }
 }
