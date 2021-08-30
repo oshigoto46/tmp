@@ -50,4 +50,8 @@ export class Web3Util{
     async getGroupIds() { 
         return this.contract.methods.getGroupIds().call();
      }
+
+    async getIndex(indexId) {
+        return this.contract.methods.getIndex(indexId).call(); 
+    }
 }

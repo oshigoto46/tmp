@@ -1,18 +1,16 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
-import { Roles } from '../common/decorators/roles.decorator';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
-import { GroupsService } from './groups.service';
-import { Groups } from './interfaces/groups.interface';
+import { GroupService } from './group.service';
 
 @UseGuards(RolesGuard)
-@Controller('groups')
+@Controller('group')
 export class GroupsController {
-  constructor(private readonly groupsService: GroupsService) {}
+  constructor(private readonly groupService: GroupService) {}
 
   @Get()
   async findAll(): Promise<Number[]> {
-    let ret = await this.groupsService.findAll();
+    let ret = await this.groupService.findAll();
     return ret;
   }
 
@@ -21,6 +19,6 @@ export class GroupsController {
     @Param('groupId', new ParseIntPipe())
     groupId: Number,
   ) {
-    return this.groupsService.findOne(groupId)
+    return this.groupService.findOne(groupId)
   }
 }
