@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
-import { LastBlockontroller } from './lastblock.controller';
-import { LastBlockservice } from './lastblock.service';
+import { Module } from "@nestjs/common";
+import { LastBlockController } from "./lastblock.controller";
+import { LastBlockService } from "./lastblock.service";
 
 @Module({
-  controllers: [LastBlockontroller],
-  providers: [LastBlockservice],
+  controllers: [LastBlockController],
+  providers: [LastBlockService],
 })
 export class LastBlockModule {}

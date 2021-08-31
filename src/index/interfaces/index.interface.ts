@@ -1,9 +1,9 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from "@nestjs/swagger";
 
-export interface Index{
-  name:              string;
-  ethPriceInWei:     number;
-  usdPriceInCents:   number;
+export interface Index {
+  name: string;
+  ethPriceInWei: number;
+  usdPriceInCents: number;
   usdCapitalization: number;
-  percentageChange:  number;
+  percentageChange: number;
 }

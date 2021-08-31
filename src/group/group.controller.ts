@@ -1,37 +1,37 @@
-import { Body, Controller, Get, Param, Res, Post, UseGuards ,HttpStatus,BadRequestException,NotFoundException} from '@nestjs/common';
-import { RolesGuard } from '../common/guards/roles.guard';
-import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
-import { GroupService } from './group.service';
-import { Group } from './interfaces/group.interface';
+import {
+  Controller,
+  Get,
+  Param,
+  UseGuards,
+  NotFoundException,
+} from "@nestjs/common";
+import { RolesGuard } from "../common/guards/roles.guard";
+import { ParseIntPipe } from "../common/pipes/parse-int.pipe";
+import { GroupService } from "./group.service";
+import { Group } from "./interfaces/group.interface";
 import {
   // ApiBearerAuth,
   // ApiOperation,
   ApiResponse,
   // ApiTags,
-} from '@nestjs/swagger';
+} from "@nestjs/swagger";
 
 @UseGuards(RolesGuard)
-@Controller('group')
+@Controller("group")
 export class GroupController {
   constructor(private readonly groupService: GroupService) {}
 
-  // @Get()
-  // async findAll(): Promise<Number[]> {
-  //   let ret = await this.groupService.findAll();
-  //   return ret;
-  // }
-
-  @Get(':groupId')
-  @ApiResponse({ status:  200, description: ' GroupId has Successfully found.'})
-  @ApiResponse( { status: 404, description: ' GroupId has not been found.' } )
+  @Get(":groupId")
+  @ApiResponse({ status: 200, description: " GroupId has Successfully found." })
+  @ApiResponse({ status: 404, description: " GroupId has not been found." })
   async findOne(
-    @Param('groupId', new ParseIntPipe())
-    groupId: Number,
-  ) :Promise<Group>{
-    const group :Group= await this.groupService.findOne(groupId)
-    if(group.name === "not_found"){
-      throw new NotFoundException(`groupId: ${groupId} not found`)
+    @Param("groupId", new ParseIntPipe())
+    groupId: Number
+  ): Promise<Group> {
+    const group: Group = await this.groupService.findOne(groupId);
+    if (group.name === "not_found") {
+      throw new NotFoundException(`groupId: ${groupId} not found`);
     }
-    return group
+    return group;
   }
 }
