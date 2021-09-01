@@ -9,12 +9,7 @@ import { RolesGuard } from "../common/guards/roles.guard";
 import { ParseIntPipe } from "../common/pipes/parse-int.pipe";
 import { GroupService } from "./group.service";
 import { Group } from "./interfaces/group.interface";
-import {
-  // ApiBearerAuth,
-  // ApiOperation,
-  ApiResponse,
-  // ApiTags,
-} from "@nestjs/swagger";
+import { ApiResponse } from "@nestjs/swagger";
 
 @UseGuards(RolesGuard)
 @Controller("group")

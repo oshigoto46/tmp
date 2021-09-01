@@ -5,6 +5,9 @@ import { GroupService } from "./group.service";
 
 @Module({
   controllers: [GroupController, GroupIdsController],
-  providers: [GroupService],
+  providers: [
+    GroupService,
+    // { provide: Web3AccessInterface, useClass: Web3Access },
+  ],
 })
 export class GroupModule {}

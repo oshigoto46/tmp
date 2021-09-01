@@ -1,20 +1,12 @@
 import { Injectable } from "@nestjs/common";
 import { Index } from "./interfaces/index.interface";
-import { Web3Util } from "../web3/web3";
+import { Web3Access } from "../web3/web3accessImpl";
 
 @Injectable()
 export class IndexService {
-  async findAll(): Promise<Number[]> {
-    const groupIds: Number[] = await new Web3Util().getGroupIds();
-    for (let groupId of groupIds) {
-      groupIds.push(groupId);
-    }
-    return groupIds;
-  }
-
   async findOne(indexId: Number): Promise<Index> {
     try {
-      const index = await new Web3Util().getIndex(indexId);
+      const index = await new Web3Access().getIndex(indexId);
       console.log("index" + index);
 
       return <Index>{
