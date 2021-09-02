@@ -2,16 +2,17 @@ const Web3 = require("web3");
 import { Group } from "../group/interfaces/group.interface";
 import { Index } from "../index/interfaces/index.interface";
 import { Block } from "../lastblock/interfaces/block.interface";
-import { Web3AccessInterface } from "./web3accessInterface";
+import { Web3AccessAbstract } from "./web.3access.abstract";
 import { abiJson } from "./abiJson";
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
-export class Web3Access implements Web3AccessInterface {
+export class Web3Access extends Web3AccessAbstract {
   private eth;
   private contract;
 
   constructor() {
+    super();
     const apiKey = process.env.APIKEY;
     const provider = new Web3.providers.HttpProvider(
       `https://ropsten.infura.io/v3/${apiKey}`
@@ -31,6 +32,9 @@ export class Web3Access implements Web3AccessInterface {
 
   async getGroupIds(): Promise<Group[]> {
     return this.contract.methods.getGroupIds().call();
+    // return new Promise<Group[]>(
+    //   (resolve, reject) => new Error("not implmented")
+    // );
   }
 
   async getIndex(indexId): Promise<Index> {
