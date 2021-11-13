@@ -8,12 +8,12 @@ export class GroupService {
     return await new Web3Access().getGroupIds();
   }
 
-  async findOne(groupId: Number): Promise<Group> {
+  async findOne(groupId: number): Promise<Group> {
     try {
       const groups: Group = await new Web3Access().getGroup(groupId);
-      return <Group>{ name: groups.name, indexes: groups.indexes };
+      return <Group>{name: groups.name, indexes: groups.indexes };
     } catch (e) {
-      let tmp: Number[] = [];
+      const tmp: number[] = [];
       return <Group>{ name: "not_found", indexes: tmp };
     }
   }

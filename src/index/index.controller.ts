@@ -15,13 +15,12 @@ import { ApiResponse } from "@nestjs/swagger";
 @Controller("index")
 export class IndexController {
   constructor(private readonly indexService: IndexService) {}
-
   @Get(":indexId")
   @ApiResponse({ status: 200, description: " Index has Successfully found." })
   @ApiResponse({ status: 404, description: "Index has not been found." })
   async findOne(
     @Param("indexId", new ParseIntPipe())
-    indexId: Number
+    indexId: number
   ) {
     const index: Index = await this.indexService.findOne(indexId);
     if (index.name === "not_found") {

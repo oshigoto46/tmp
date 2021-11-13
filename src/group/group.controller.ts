@@ -21,7 +21,7 @@ export class GroupController {
   @ApiResponse({ status: 404, description: " GroupId has not been found." })
   async findOne(
     @Param("groupId", new ParseIntPipe())
-    groupId: Number
+    groupId: number
   ): Promise<Group> {
     const group: Group = await this.groupService.findOne(groupId);
     if (group.name === "not_found") {

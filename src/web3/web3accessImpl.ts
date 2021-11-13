@@ -10,7 +10,7 @@ import { Injectable } from "@nestjs/common";
 export class Web3Access implements Web3AccessInterface {
   private eth;
   private contract;
-
+  
   constructor() {
     const apiKey = process.env.APIKEY;
     const provider = new Web3.providers.HttpProvider(

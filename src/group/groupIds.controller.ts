@@ -7,16 +7,17 @@ import { ApiResponse } from "@nestjs/swagger";
 
 @UseGuards(RolesGuard)
 @Controller("group-ids")
+
 export class GroupIdsController {
   constructor(private readonly groupService: GroupService) {}
-
+  
   @Get()
   @ApiResponse({
     status: 200,
     description: " GroupIds have Successfully found.",
   })
   async findAll(): Promise<Group[]> {
-    let ret = await this.groupService.findAll();
+    const ret = await this.groupService.findAll();
     return ret;
   }
 }

@@ -4,7 +4,7 @@ import { Web3Access } from "../web3/web3accessImpl";
 
 @Injectable()
 export class IndexService {
-  async findOne(indexId: Number): Promise<Index> {
+  async findOne(indexId: number): Promise<Index> {
     try {
       const index = await new Web3Access().getIndex(indexId);
       console.log("index" + index);
@@ -17,7 +17,7 @@ export class IndexService {
         percentageChange: index.percentageChange,
       };
     } catch (e) {
-      //
+      
       // console.log("===============service======")
       return <Index>{
         name: "not_found",

@@ -65,7 +65,7 @@ describe("Groups", () => {
       .get("/group/12")
       .then((r) => {
         expect(r.statusCode).toBe(200);
-        let actual = JSON.parse(r.text.split("\\")[0]);
+        const actual = JSON.parse(r.text.split("\\")[0]);
         // some trick for workaround
         expect(
           _.isEqual(actual.data[0].indexes, ["0", "1", "2", "3", "4", "5", "6"])
