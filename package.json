@@ -34,6 +34,7 @@
     "class-validator": "0.13.1",
     "dotenv": "^10.0.0",
     "fastify-swagger": "^4.9.1",
+    "graphql": "^15.7.2",
     "graphql-tools": "^8.2.0",
     "lodash": "^4.17.21",
     "mysql": "^2.18.1",
@@ -41,6 +42,7 @@
     "rimraf": "3.0.2",
     "rxjs": "7.3.0",
     "swagger-ui-express": "^4.1.6",
+    "ts-morph": "^12.2.0",
     "typeorm": "^0.2.40",
     "web3": "^1.5.2",
     "web3-eth": "^1.5.2"

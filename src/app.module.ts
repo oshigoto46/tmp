@@ -33,9 +33,13 @@ require('dotenv').config();
     LastBlockModule,
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
+      debug: false,
       playground: true,
-      // debug: true,
-      autoSchemaFile: 'schema.graphql',
+      typePaths: ['./**/*.graphql'],
+      definitions: {
+        path: __dirname + 'src/graphql.ts',
+        outputAs: 'class',
+      },
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
