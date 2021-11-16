@@ -2,7 +2,7 @@ import { Controller, Get, Post, Param, Body, Delete, HttpCode, HttpStatus, Put }
 import { TestObjectService } from './test-object.service';
 import { CreateTestDataDTO, UpdateTestDataDTO } from './test-object.dto';
 import { TestObject } from './test-object';
-
+import { index } from '../elastic-search/elasticSearch';
 @Controller('test-object')
 export class TestObjectController {
   constructor(private readonly service: TestObjectService) {}
@@ -10,6 +10,9 @@ export class TestObjectController {
   @Get()
   @HttpCode(HttpStatus.OK)
   all(): Promise<TestObject[]> {
+    console.log('hoge===');
+    console.log(index());
+    console.log('hoge===');
     return this.service.all();
   }
 

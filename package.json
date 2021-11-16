@@ -19,6 +19,7 @@
     "test:e2e": "jest --config ./e2e/jest-e2e.json"
   },
   "dependencies": {
+    "@elastic/elasticsearch": "^7.15.0",
     "@nestjs-query/core": "^0.30.0",
     "@nestjs-query/query-typeorm": "^0.30.0",
     "@nestjs/common": "8.0.6",
@@ -33,6 +34,7 @@
     "class-transformer": "0.4.0",
     "class-validator": "0.13.1",
     "dotenv": "^10.0.0",
+    "elasticsearch": "^16.7.2",
     "fastify-swagger": "^4.9.1",
     "graphql": "^15.7.2",
     "graphql-tools": "^8.2.0",
